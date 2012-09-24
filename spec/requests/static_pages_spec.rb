@@ -8,10 +8,15 @@ describe "StaticPages" do
       page.should have_selector('h1', :text => 'CrowdPub')
     end
 
-    it "should have the title 'Home'" do
+    it "should have the base title" do
       visit '/static_pages/home'
       page.should have_selector('title',
-        :text => "CrowdPub for Writers | Home")
+        :text => "CrowdPub for Writers")
+    end
+
+    it "should not have a custom page title" do
+      visit '/static_pages/home'
+      page.should_not have_selector('title', :text => '| Home')
     end
   end
 
